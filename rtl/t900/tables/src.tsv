@@ -1,0 +1,257 @@
+opcode	mnemonic	op1_kind	op1_size	op2_kind	op2_size	states_900h	group	notes
+0x00	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x01	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x02	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x03	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x04	PUSH	mem	z	-	-	6/6/-	load	
+0x05	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x06	RLD	A	B	mem	B	14/-/-	shift	
+0x07	RRD	A	B	mem	B	14/-/-	shift	
+0x08	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x09	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x10	LDI	-	-	-	-	8/8/-	string	size B decoded only via classes 80-87(xrr) (MAME DB elsewhere); size W decoded only via classes 90-97(xrr) (MAME DB elsewhere); register pairs implied by FIRST byte: x3=(XDE±)/(XHL±), x5=(XIX±)/(XIY±); Toshiba defines only class bytes 83/85 (B) and 93/95 (W); MAME decodes any 80-87/90-97 using pairs (rrr-1,rrr); SLEIGH decodes non-5 codes as XDE/XHL
+0x11	LDIR	-	-	-	-	8/8/-	string	size B decoded only via classes 80-87(xrr) (MAME DB elsewhere); size W decoded only via classes 90-97(xrr) (MAME DB elsewhere); register pairs implied by FIRST byte: x3=(XDE±)/(XHL±), x5=(XIX±)/(XIY±); Toshiba defines only class bytes 83/85 (B) and 93/95 (W); MAME decodes any 80-87/90-97 using pairs (rrr-1,rrr); SLEIGH decodes non-5 codes as XDE/XHL; repeat: MAME re-executes (PC-=2) with /H adder -1 => 7 states/iter; Toshiba 7n+1; BC=0 means 65536? (loops while BC!=0 after decrement)
+0x12	LDD	-	-	-	-	8/8/-	string	size B decoded only via classes 80-87(xrr) (MAME DB elsewhere); size W decoded only via classes 90-97(xrr) (MAME DB elsewhere); register pairs implied by FIRST byte: x3=(XDE±)/(XHL±), x5=(XIX±)/(XIY±); Toshiba defines only class bytes 83/85 (B) and 93/95 (W); MAME decodes any 80-87/90-97 using pairs (rrr-1,rrr); SLEIGH decodes non-5 codes as XDE/XHL
+0x13	LDDR	-	-	-	-	8/8/-	string	size B decoded only via classes 80-87(xrr) (MAME DB elsewhere); size W decoded only via classes 90-97(xrr) (MAME DB elsewhere); register pairs implied by FIRST byte: x3=(XDE±)/(XHL±), x5=(XIX±)/(XIY±); Toshiba defines only class bytes 83/85 (B) and 93/95 (W); MAME decodes any 80-87/90-97 using pairs (rrr-1,rrr); SLEIGH decodes non-5 codes as XDE/XHL; repeat: MAME re-executes (PC-=2) with /H adder -1 => 7 states/iter; Toshiba 7n+1; BC=0 means 65536? (loops while BC!=0 after decrement)
+0x14	CPI	-	-	-	-	6/6/-	string	size B decoded only via classes 80-87(xrr) (MAME DB elsewhere); size W decoded only via classes 90-97(xrr) (MAME DB elsewhere); register pairs implied by FIRST byte: x3=(XDE±)/(XHL±), x5=(XIX±)/(XIY±); Toshiba defines only class bytes 83/85 (B) and 93/95 (W); MAME decodes any 80-87/90-97 using pairs (rrr-1,rrr); SLEIGH decodes non-5 codes as XDE/XHL
+0x15	CPIR	-	-	-	-	7/7/-	string	size B decoded only via classes 80-87(xrr) (MAME DB elsewhere); size W decoded only via classes 90-97(xrr) (MAME DB elsewhere); register pairs implied by FIRST byte: x3=(XDE±)/(XHL±), x5=(XIX±)/(XIY±); Toshiba defines only class bytes 83/85 (B) and 93/95 (W); MAME decodes any 80-87/90-97 using pairs (rrr-1,rrr); SLEIGH decodes non-5 codes as XDE/XHL; repeat: MAME re-executes (PC-=2) with /H adder -1 => 6 states/iter; Toshiba 6n+1
+0x16	CPD	-	-	-	-	6/6/-	string	size B decoded only via classes 80-87(xrr) (MAME DB elsewhere); size W decoded only via classes 90-97(xrr) (MAME DB elsewhere); register pairs implied by FIRST byte: x3=(XDE±)/(XHL±), x5=(XIX±)/(XIY±); Toshiba defines only class bytes 83/85 (B) and 93/95 (W); MAME decodes any 80-87/90-97 using pairs (rrr-1,rrr); SLEIGH decodes non-5 codes as XDE/XHL
+0x17	CPDR	-	-	-	-	7/7/-	string	size B decoded only via classes 80-87(xrr) (MAME DB elsewhere); size W decoded only via classes 90-97(xrr) (MAME DB elsewhere); register pairs implied by FIRST byte: x3=(XDE±)/(XHL±), x5=(XIX±)/(XIY±); Toshiba defines only class bytes 83/85 (B) and 93/95 (W); MAME decodes any 80-87/90-97 using pairs (rrr-1,rrr); SLEIGH decodes non-5 codes as XDE/XHL; repeat: MAME re-executes (PC-=2) with /H adder -1 => 6 states/iter; Toshiba 6n+1
+0x18	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x19	LD	mem16	z	mem	z	8/8/-	load	
+0x1A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x20	LD	R	z	mem	z	4/4/6	load	
+0x21	LD	R	z	mem	z	4/4/6	load	
+0x22	LD	R	z	mem	z	4/4/6	load	
+0x23	LD	R	z	mem	z	4/4/6	load	
+0x24	LD	R	z	mem	z	4/4/6	load	
+0x25	LD	R	z	mem	z	4/4/6	load	
+0x26	LD	R	z	mem	z	4/4/6	load	
+0x27	LD	R	z	mem	z	4/4/6	load	
+0x28	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x29	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x2A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x2B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x2C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x2D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x2E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x2F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x30	EX	mem	z	R	z	6/6/-	load	
+0x31	EX	mem	z	R	z	6/6/-	load	
+0x32	EX	mem	z	R	z	6/6/-	load	
+0x33	EX	mem	z	R	z	6/6/-	load	
+0x34	EX	mem	z	R	z	6/6/-	load	
+0x35	EX	mem	z	R	z	6/6/-	load	
+0x36	EX	mem	z	R	z	6/6/-	load	
+0x37	EX	mem	z	R	z	6/6/-	load	
+0x38	ADD	mem	z	imm	z	7/8/-	alu	
+0x39	ADC	mem	z	imm	z	7/8/-	alu	
+0x3A	SUB	mem	z	imm	z	7/8/-	alu	
+0x3B	SBC	mem	z	imm	z	7/8/-	alu	
+0x3C	AND	mem	z	imm	z	7/8/-	alu	
+0x3D	XOR	mem	z	imm	z	7/8/-	alu	
+0x3E	OR	mem	z	imm	z	7/8/-	alu	
+0x3F	CP	mem	z	imm	z	5/6/-	alu	
+0x40	MUL	R	z2	mem	z	13/16/-	alu	dst is double-width register pair (RR)
+0x41	MUL	R	z2	mem	z	13/16/-	alu	dst is double-width register pair (RR)
+0x42	MUL	R	z2	mem	z	13/16/-	alu	dst is double-width register pair (RR)
+0x43	MUL	R	z2	mem	z	13/16/-	alu	dst is double-width register pair (RR)
+0x44	MUL	R	z2	mem	z	13/16/-	alu	dst is double-width register pair (RR)
+0x45	MUL	R	z2	mem	z	13/16/-	alu	dst is double-width register pair (RR)
+0x46	MUL	R	z2	mem	z	13/16/-	alu	dst is double-width register pair (RR)
+0x47	MUL	R	z2	mem	z	13/16/-	alu	dst is double-width register pair (RR)
+0x48	MULS	R	z2	mem	z	11/14/-	alu	dst is double-width register pair (RR)
+0x49	MULS	R	z2	mem	z	11/14/-	alu	dst is double-width register pair (RR)
+0x4A	MULS	R	z2	mem	z	11/14/-	alu	dst is double-width register pair (RR)
+0x4B	MULS	R	z2	mem	z	11/14/-	alu	dst is double-width register pair (RR)
+0x4C	MULS	R	z2	mem	z	11/14/-	alu	dst is double-width register pair (RR)
+0x4D	MULS	R	z2	mem	z	11/14/-	alu	dst is double-width register pair (RR)
+0x4E	MULS	R	z2	mem	z	11/14/-	alu	dst is double-width register pair (RR)
+0x4F	MULS	R	z2	mem	z	11/14/-	alu	dst is double-width register pair (RR)
+0x50	DIV	R	z2	mem	z	16/24/-	alu	dst is double-width register pair (RR)
+0x51	DIV	R	z2	mem	z	16/24/-	alu	dst is double-width register pair (RR)
+0x52	DIV	R	z2	mem	z	16/24/-	alu	dst is double-width register pair (RR)
+0x53	DIV	R	z2	mem	z	16/24/-	alu	dst is double-width register pair (RR)
+0x54	DIV	R	z2	mem	z	16/24/-	alu	dst is double-width register pair (RR)
+0x55	DIV	R	z2	mem	z	16/24/-	alu	dst is double-width register pair (RR)
+0x56	DIV	R	z2	mem	z	16/24/-	alu	dst is double-width register pair (RR)
+0x57	DIV	R	z2	mem	z	16/24/-	alu	dst is double-width register pair (RR)
+0x58	DIVS	R	z2	mem	z	19/27/-	alu	dst is double-width register pair (RR)
+0x59	DIVS	R	z2	mem	z	19/27/-	alu	dst is double-width register pair (RR)
+0x5A	DIVS	R	z2	mem	z	19/27/-	alu	dst is double-width register pair (RR)
+0x5B	DIVS	R	z2	mem	z	24/27/-	alu	dst is double-width register pair (RR)
+0x5C	DIVS	R	z2	mem	z	19/27/-	alu	dst is double-width register pair (RR)
+0x5D	DIVS	R	z2	mem	z	19/27/-	alu	dst is double-width register pair (RR)
+0x5E	DIVS	R	z2	mem	z	19/27/-	alu	dst is double-width register pair (RR)
+0x5F	DIVS	R	z2	mem	z	24/27/-	alu	dst is double-width register pair (RR)
+0x60	INC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x61	INC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x62	INC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x63	INC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x64	INC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x65	INC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x66	INC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x67	INC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x68	DEC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x69	DEC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x6A	DEC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x6B	DEC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x6C	DEC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x6D	DEC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x6E	DEC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x6F	DEC	imm3	-	mem	z	6/6/-	alu	imm3 0 means 8; mem forms set flags (except C only for byte? see Appendix B)
+0x70	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x71	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x72	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x73	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x74	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x75	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x76	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x77	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x78	RLC	mem	z	-	-	6/6/-	shift	shift by 1 only (mem form)
+0x79	RRC	mem	z	-	-	6/6/-	shift	shift by 1 only (mem form)
+0x7A	RL	mem	z	-	-	6/6/-	shift	shift by 1 only (mem form)
+0x7B	RR	mem	z	-	-	6/6/-	shift	shift by 1 only (mem form)
+0x7C	SLA	mem	z	-	-	6/6/-	shift	shift by 1 only (mem form)
+0x7D	SRA	mem	z	-	-	6/6/-	shift	shift by 1 only (mem form)
+0x7E	SLL	mem	z	-	-	6/6/-	shift	shift by 1 only (mem form)
+0x7F	SRL	mem	z	-	-	6/6/-	shift	shift by 1 only (mem form)
+0x80	ADD	R	z	mem	z	4/4/6	alu	
+0x81	ADD	R	z	mem	z	4/4/6	alu	
+0x82	ADD	R	z	mem	z	4/4/6	alu	
+0x83	ADD	R	z	mem	z	4/4/6	alu	
+0x84	ADD	R	z	mem	z	4/4/6	alu	
+0x85	ADD	R	z	mem	z	4/4/6	alu	
+0x86	ADD	R	z	mem	z	4/4/6	alu	
+0x87	ADD	R	z	mem	z	4/4/6	alu	
+0x88	ADD	mem	z	R	z	6/6/10	alu	
+0x89	ADD	mem	z	R	z	6/6/10	alu	
+0x8A	ADD	mem	z	R	z	6/6/10	alu	
+0x8B	ADD	mem	z	R	z	6/6/10	alu	
+0x8C	ADD	mem	z	R	z	6/6/10	alu	
+0x8D	ADD	mem	z	R	z	6/6/10	alu	
+0x8E	ADD	mem	z	R	z	6/6/10	alu	
+0x8F	ADD	mem	z	R	z	6/6/10	alu	
+0x90	ADC	R	z	mem	z	4/4/6	alu	
+0x91	ADC	R	z	mem	z	4/4/6	alu	
+0x92	ADC	R	z	mem	z	4/4/6	alu	
+0x93	ADC	R	z	mem	z	4/4/6	alu	
+0x94	ADC	R	z	mem	z	4/4/6	alu	
+0x95	ADC	R	z	mem	z	4/4/6	alu	
+0x96	ADC	R	z	mem	z	4/4/6	alu	
+0x97	ADC	R	z	mem	z	4/4/6	alu	
+0x98	ADC	mem	z	R	z	6/6/10	alu	
+0x99	ADC	mem	z	R	z	6/6/10	alu	
+0x9A	ADC	mem	z	R	z	6/6/10	alu	
+0x9B	ADC	mem	z	R	z	6/6/10	alu	
+0x9C	ADC	mem	z	R	z	6/6/10	alu	
+0x9D	ADC	mem	z	R	z	6/6/10	alu	
+0x9E	ADC	mem	z	R	z	6/6/10	alu	
+0x9F	ADC	mem	z	R	z	6/6/10	alu	
+0xA0	SUB	R	z	mem	z	4/4/6	alu	
+0xA1	SUB	R	z	mem	z	4/4/6	alu	
+0xA2	SUB	R	z	mem	z	4/4/6	alu	
+0xA3	SUB	R	z	mem	z	4/4/6	alu	
+0xA4	SUB	R	z	mem	z	4/4/6	alu	
+0xA5	SUB	R	z	mem	z	4/4/6	alu	
+0xA6	SUB	R	z	mem	z	4/4/6	alu	
+0xA7	SUB	R	z	mem	z	4/4/6	alu	
+0xA8	SUB	mem	z	R	z	6/6/10	alu	
+0xA9	SUB	mem	z	R	z	6/6/10	alu	
+0xAA	SUB	mem	z	R	z	6/6/10	alu	
+0xAB	SUB	mem	z	R	z	6/6/10	alu	
+0xAC	SUB	mem	z	R	z	6/6/10	alu	
+0xAD	SUB	mem	z	R	z	6/6/10	alu	
+0xAE	SUB	mem	z	R	z	6/6/10	alu	
+0xAF	SUB	mem	z	R	z	6/6/10	alu	
+0xB0	SBC	R	z	mem	z	4/4/6	alu	
+0xB1	SBC	R	z	mem	z	4/4/6	alu	
+0xB2	SBC	R	z	mem	z	4/4/6	alu	
+0xB3	SBC	R	z	mem	z	4/4/6	alu	
+0xB4	SBC	R	z	mem	z	4/4/6	alu	
+0xB5	SBC	R	z	mem	z	4/4/6	alu	
+0xB6	SBC	R	z	mem	z	4/4/6	alu	
+0xB7	SBC	R	z	mem	z	4/4/6	alu	
+0xB8	SBC	mem	z	R	z	6/6/10	alu	
+0xB9	SBC	mem	z	R	z	6/6/10	alu	
+0xBA	SBC	mem	z	R	z	6/6/10	alu	
+0xBB	SBC	mem	z	R	z	6/6/10	alu	
+0xBC	SBC	mem	z	R	z	6/6/10	alu	
+0xBD	SBC	mem	z	R	z	6/6/10	alu	
+0xBE	SBC	mem	z	R	z	6/6/10	alu	
+0xBF	SBC	mem	z	R	z	6/6/10	alu	
+0xC0	AND	R	z	mem	z	4/4/6	alu	
+0xC1	AND	R	z	mem	z	4/4/6	alu	
+0xC2	AND	R	z	mem	z	4/4/6	alu	
+0xC3	AND	R	z	mem	z	4/4/6	alu	
+0xC4	AND	R	z	mem	z	4/4/6	alu	
+0xC5	AND	R	z	mem	z	4/4/6	alu	
+0xC6	AND	R	z	mem	z	4/4/6	alu	
+0xC7	AND	R	z	mem	z	4/4/6	alu	
+0xC8	AND	mem	z	R	z	6/6/10	alu	
+0xC9	AND	mem	z	R	z	6/6/10	alu	
+0xCA	AND	mem	z	R	z	6/6/10	alu	
+0xCB	AND	mem	z	R	z	6/6/10	alu	
+0xCC	AND	mem	z	R	z	6/6/10	alu	
+0xCD	AND	mem	z	R	z	6/6/10	alu	
+0xCE	AND	mem	z	R	z	6/6/10	alu	
+0xCF	AND	mem	z	R	z	6/6/10	alu	
+0xD0	XOR	R	z	mem	z	4/4/6	alu	
+0xD1	XOR	R	z	mem	z	4/4/6	alu	
+0xD2	XOR	R	z	mem	z	4/4/6	alu	
+0xD3	XOR	R	z	mem	z	4/4/6	alu	
+0xD4	XOR	R	z	mem	z	4/4/6	alu	
+0xD5	XOR	R	z	mem	z	4/4/6	alu	
+0xD6	XOR	R	z	mem	z	4/4/6	alu	
+0xD7	XOR	R	z	mem	z	4/4/6	alu	
+0xD8	XOR	mem	z	R	z	6/6/10	alu	
+0xD9	XOR	mem	z	R	z	6/6/10	alu	
+0xDA	XOR	mem	z	R	z	6/6/10	alu	
+0xDB	XOR	mem	z	R	z	6/6/10	alu	
+0xDC	XOR	mem	z	R	z	6/6/10	alu	
+0xDD	XOR	mem	z	R	z	6/6/10	alu	
+0xDE	XOR	mem	z	R	z	6/6/10	alu	
+0xDF	XOR	mem	z	R	z	6/6/10	alu	
+0xE0	OR	R	z	mem	z	4/4/6	alu	
+0xE1	OR	R	z	mem	z	4/4/6	alu	
+0xE2	OR	R	z	mem	z	4/4/6	alu	
+0xE3	OR	R	z	mem	z	4/4/6	alu	
+0xE4	OR	R	z	mem	z	4/4/6	alu	
+0xE5	OR	R	z	mem	z	4/4/6	alu	
+0xE6	OR	R	z	mem	z	4/4/6	alu	
+0xE7	OR	R	z	mem	z	4/4/6	alu	
+0xE8	OR	mem	z	R	z	6/6/10	alu	
+0xE9	OR	mem	z	R	z	6/6/10	alu	
+0xEA	OR	mem	z	R	z	6/6/10	alu	
+0xEB	OR	mem	z	R	z	6/6/10	alu	
+0xEC	OR	mem	z	R	z	6/6/10	alu	
+0xED	OR	mem	z	R	z	6/6/10	alu	
+0xEE	OR	mem	z	R	z	6/6/10	alu	
+0xEF	OR	mem	z	R	z	6/6/10	alu	
+0xF0	CP	R	z	mem	z	4/4/6	alu	
+0xF1	CP	R	z	mem	z	4/4/6	alu	
+0xF2	CP	R	z	mem	z	4/4/6	alu	
+0xF3	CP	R	z	mem	z	4/4/6	alu	
+0xF4	CP	R	z	mem	z	4/4/6	alu	
+0xF5	CP	R	z	mem	z	4/4/6	alu	
+0xF6	CP	R	z	mem	z	4/4/6	alu	
+0xF7	CP	R	z	mem	z	4/4/6	alu	
+0xF8	CP	mem	z	R	z	4/4/6	alu	
+0xF9	CP	mem	z	R	z	4/4/6	alu	
+0xFA	CP	mem	z	R	z	4/4/6	alu	
+0xFB	CP	mem	z	R	z	4/4/6	alu	
+0xFC	CP	mem	z	R	z	4/4/6	alu	
+0xFD	CP	mem	z	R	z	4/4/6	alu	
+0xFE	CP	mem	z	R	z	4/4/6	alu	
+0xFF	CP	mem	z	R	z	4/4/6	alu	

@@ -1,0 +1,257 @@
+opcode	mnemonic	op1_kind	op1_size	op2_kind	op2_size	states_900h	group	notes
+0x00	LD	mem	B	imm8	-	5	load	
+0x01	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x02	LD	mem	W	imm16	-	6	load	
+0x03	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x04	POP	mem	B	-	-	7	load	
+0x05	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x06	POP	mem	W	-	-	7	load	
+0x07	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x08	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x09	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x0F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x10	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x11	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x12	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x13	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x14	LD	mem	B	mem16	B	8	load	
+0x15	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x16	LD	mem	W	mem16	W	8	load	
+0x17	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x18	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x19	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x20	LDA	R	W	mem	-	4	load	EA only, no memory access
+0x21	LDA	R	W	mem	-	4	load	EA only, no memory access
+0x22	LDA	R	W	mem	-	4	load	EA only, no memory access
+0x23	LDA	R	W	mem	-	4	load	EA only, no memory access
+0x24	LDA	R	W	mem	-	4	load	EA only, no memory access
+0x25	LDA	R	W	mem	-	4	load	EA only, no memory access
+0x26	LDA	R	W	mem	-	4	load	EA only, no memory access
+0x27	LDA	R	W	mem	-	4	load	EA only, no memory access
+0x28	ANDCF	A	B	mem	B	6	bit	
+0x29	ORCF	A	B	mem	B	6	bit	
+0x2A	XORCF	A	B	mem	B	6	bit	
+0x2B	LDCF	A	B	mem	B	6	bit	
+0x2C	STCF	A	B	mem	B	7	bit	
+0x2D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x2E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x2F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x30	LDA	R	L	mem	-	4	load	EA only, no memory access
+0x31	LDA	R	L	mem	-	4	load	EA only, no memory access
+0x32	LDA	R	L	mem	-	4	load	EA only, no memory access
+0x33	LDA	R	L	mem	-	4	load	EA only, no memory access
+0x34	LDA	R	L	mem	-	4	load	EA only, no memory access
+0x35	LDA	R	L	mem	-	4	load	EA only, no memory access
+0x36	LDA	R	L	mem	-	4	load	EA only, no memory access
+0x37	LDA	R	L	mem	-	4	load	EA only, no memory access
+0x38	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x39	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x3A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x3B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x3C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x3D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x3E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x3F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x40	LD	mem	B	R	B	4	load	
+0x41	LD	mem	B	R	B	4	load	
+0x42	LD	mem	B	R	B	4	load	
+0x43	LD	mem	B	R	B	4	load	
+0x44	LD	mem	B	R	B	4	load	
+0x45	LD	mem	B	R	B	4	load	
+0x46	LD	mem	B	R	B	4	load	
+0x47	LD	mem	B	R	B	4	load	
+0x48	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x49	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x4A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x4B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x4C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x4D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x4E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x4F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x50	LD	mem	W	R	W	4	load	
+0x51	LD	mem	W	R	W	4	load	
+0x52	LD	mem	W	R	W	4	load	
+0x53	LD	mem	W	R	W	4	load	
+0x54	LD	mem	W	R	W	4	load	
+0x55	LD	mem	W	R	W	4	load	
+0x56	LD	mem	W	R	W	4	load	
+0x57	LD	mem	W	R	W	4	load	
+0x58	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x59	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x5A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x5B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x5C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x5D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x5E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x5F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x60	LD	mem	L	R	L	6	load	
+0x61	LD	mem	L	R	L	6	load	
+0x62	LD	mem	L	R	L	6	load	
+0x63	LD	mem	L	R	L	6	load	
+0x64	LD	mem	L	R	L	6	load	
+0x65	LD	mem	L	R	L	6	load	
+0x66	LD	mem	L	R	L	6	load	
+0x67	LD	mem	L	R	L	6	load	
+0x68	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x69	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x6A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x6B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x6C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x6D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x6E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x6F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x70	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x71	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x72	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x73	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x74	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x75	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x76	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x77	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x78	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x79	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x7A	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x7B	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x7C	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x7D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x7E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x7F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x80	ANDCF	imm3	-	mem	B	6	bit	
+0x81	ANDCF	imm3	-	mem	B	6	bit	
+0x82	ANDCF	imm3	-	mem	B	6	bit	
+0x83	ANDCF	imm3	-	mem	B	6	bit	
+0x84	ANDCF	imm3	-	mem	B	6	bit	
+0x85	ANDCF	imm3	-	mem	B	6	bit	
+0x86	ANDCF	imm3	-	mem	B	6	bit	
+0x87	ANDCF	imm3	-	mem	B	6	bit	
+0x88	ORCF	imm3	-	mem	B	6	bit	
+0x89	ORCF	imm3	-	mem	B	6	bit	
+0x8A	ORCF	imm3	-	mem	B	6	bit	
+0x8B	ORCF	imm3	-	mem	B	6	bit	
+0x8C	ORCF	imm3	-	mem	B	6	bit	
+0x8D	ORCF	imm3	-	mem	B	6	bit	
+0x8E	ORCF	imm3	-	mem	B	6	bit	
+0x8F	ORCF	imm3	-	mem	B	6	bit	
+0x90	XORCF	imm3	-	mem	B	6	bit	
+0x91	XORCF	imm3	-	mem	B	6	bit	
+0x92	XORCF	imm3	-	mem	B	6	bit	
+0x93	XORCF	imm3	-	mem	B	6	bit	
+0x94	XORCF	imm3	-	mem	B	6	bit	
+0x95	XORCF	imm3	-	mem	B	6	bit	
+0x96	XORCF	imm3	-	mem	B	6	bit	
+0x97	XORCF	imm3	-	mem	B	6	bit	
+0x98	LDCF	imm3	-	mem	B	6	bit	
+0x99	LDCF	imm3	-	mem	B	6	bit	
+0x9A	LDCF	imm3	-	mem	B	6	bit	
+0x9B	LDCF	imm3	-	mem	B	6	bit	
+0x9C	LDCF	imm3	-	mem	B	6	bit	
+0x9D	LDCF	imm3	-	mem	B	6	bit	
+0x9E	LDCF	imm3	-	mem	B	6	bit	
+0x9F	LDCF	imm3	-	mem	B	6	bit	
+0xA0	STCF	imm3	-	mem	B	7	bit	
+0xA1	STCF	imm3	-	mem	B	7	bit	
+0xA2	STCF	imm3	-	mem	B	7	bit	
+0xA3	STCF	imm3	-	mem	B	7	bit	
+0xA4	STCF	imm3	-	mem	B	7	bit	
+0xA5	STCF	imm3	-	mem	B	7	bit	
+0xA6	STCF	imm3	-	mem	B	7	bit	
+0xA7	STCF	imm3	-	mem	B	7	bit	
+0xA8	TSET	imm3	-	mem	B	7	bit	
+0xA9	TSET	imm3	-	mem	B	7	bit	
+0xAA	TSET	imm3	-	mem	B	7	bit	
+0xAB	TSET	imm3	-	mem	B	7	bit	
+0xAC	TSET	imm3	-	mem	B	7	bit	
+0xAD	TSET	imm3	-	mem	B	7	bit	
+0xAE	TSET	imm3	-	mem	B	7	bit	
+0xAF	TSET	imm3	-	mem	B	7	bit	
+0xB0	RES	imm3	-	mem	B	7	bit	
+0xB1	RES	imm3	-	mem	B	7	bit	
+0xB2	RES	imm3	-	mem	B	7	bit	
+0xB3	RES	imm3	-	mem	B	7	bit	
+0xB4	RES	imm3	-	mem	B	7	bit	
+0xB5	RES	imm3	-	mem	B	7	bit	
+0xB6	RES	imm3	-	mem	B	7	bit	
+0xB7	RES	imm3	-	mem	B	7	bit	
+0xB8	SET	imm3	-	mem	B	7	bit	
+0xB9	SET	imm3	-	mem	B	7	bit	
+0xBA	SET	imm3	-	mem	B	7	bit	
+0xBB	SET	imm3	-	mem	B	7	bit	
+0xBC	SET	imm3	-	mem	B	7	bit	
+0xBD	SET	imm3	-	mem	B	7	bit	
+0xBE	SET	imm3	-	mem	B	7	bit	
+0xBF	SET	imm3	-	mem	B	7	bit	
+0xC0	CHG	imm3	-	mem	B	7	bit	
+0xC1	CHG	imm3	-	mem	B	7	bit	
+0xC2	CHG	imm3	-	mem	B	7	bit	
+0xC3	CHG	imm3	-	mem	B	7	bit	
+0xC4	CHG	imm3	-	mem	B	7	bit	
+0xC5	CHG	imm3	-	mem	B	7	bit	
+0xC6	CHG	imm3	-	mem	B	7	bit	
+0xC7	CHG	imm3	-	mem	B	7	bit	
+0xC8	BIT	imm3	-	mem	B	6	bit	
+0xC9	BIT	imm3	-	mem	B	6	bit	
+0xCA	BIT	imm3	-	mem	B	6	bit	
+0xCB	BIT	imm3	-	mem	B	6	bit	
+0xCC	BIT	imm3	-	mem	B	6	bit	
+0xCD	BIT	imm3	-	mem	B	6	bit	
+0xCE	BIT	imm3	-	mem	B	6	bit	
+0xCF	BIT	imm3	-	mem	B	6	bit	
+0xD0	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xD1	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xD2	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xD3	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xD4	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xD5	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xD6	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xD7	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xD8	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xD9	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xDA	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xDB	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xDC	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xDD	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xDE	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xDF	JP	cc	-	mem	-	4	control-transfer	+3 states if taken (/H jp_true)
+0xE0	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xE1	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xE2	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xE3	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xE4	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xE5	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xE6	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xE7	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xE8	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xE9	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xEA	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xEB	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xEC	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xED	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xEE	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xEF	CALL	cc	-	mem	-	4	control-transfer	+8 states if taken (/H call_true)
+0xF0	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xF1	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xF2	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xF3	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xF4	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xF5	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xF6	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xF7	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xF8	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xF9	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xFA	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xFB	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xFC	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xFD	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xFE	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken
+0xFF	RET	cc	-	-	-	4	control-transfer	decoded only via classes B0-B7(xrr) (MAME DB elsewhere); RET cc: Toshiba legal only via class byte B0h (B0 F0+cc); MAME dispatches only from the B0-B7 class table; SLEIGH decodes it via every dst class; +8 states if taken

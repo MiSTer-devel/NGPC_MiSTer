@@ -1,0 +1,257 @@
+opcode	mnemonic	op1_kind	op1_size	op2_kind	op2_size	states_900h	group	notes
+0x00	NOP	-	-	-	-	2	system	
+0x01	UNDEF	-	-	-	-	-	undefined	Toshiba code map: dummy 'do not use' (deleted NORMAL slot); MAME=undefined, SLEIGH decodes NORMAL; silicon behavior unverified
+0x02	PUSH	SR	W	-	-	3	load	
+0x03	POP	SR	W	-	-	4	load	
+0x04	UNDEF	-	-	-	-	-	undefined	Toshiba code map: dummy 'do not use' (deleted MAX slot); MAME=undefined, SLEIGH decodes MAX; silicon behavior unverified
+0x05	HALT	-	-	-	-	6	system	
+0x06	EI	imm8	-	-	-	3	system	EI num; num=7 => DI; Toshiba DI=4 states vs EI=3, MAME charges 3 for both
+0x07	RETI	-	-	-	-	12	control-transfer	
+0x08	LD	mem8	B	imm8	-	5	load	
+0x09	PUSH	imm8	-	-	-	4	load	
+0x0A	LD	mem8	W	imm16	-	6	load	
+0x0B	PUSH	imm16	-	-	-	5	load	
+0x0C	INCF	-	-	-	-	2	system	
+0x0D	DECF	-	-	-	-	2	system	
+0x0E	RET	-	-	-	-	9	control-transfer	
+0x0F	RETD	imm16	-	-	-	11	control-transfer	
+0x10	RCF	-	-	-	-	2	bit	
+0x11	SCF	-	-	-	-	2	bit	
+0x12	CCF	-	-	-	-	2	bit	
+0x13	ZCF	-	-	-	-	2	bit	
+0x14	PUSH	A	B	-	-	3	load	
+0x15	POP	A	B	-	-	4	load	
+0x16	EX	F	B	F'	B	2	load	swaps F and F' (shadow flags)
+0x17	LDF	imm8	-	-	-	2	system	
+0x18	PUSH	F	B	-	-	3	load	
+0x19	POP	F	B	-	-	4	load	
+0x1A	JP	imm16	-	-	-	5	control-transfer	
+0x1B	JP	imm24	-	-	-	6	control-transfer	
+0x1C	CALL	imm16	-	-	-	9	control-transfer	
+0x1D	CALL	imm24	-	-	-	10	control-transfer	
+0x1E	CALR	d16	-	-	-	10	control-transfer	
+0x1F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x20	LD	R	B	imm8	-	2	load	
+0x21	LD	R	B	imm8	-	2	load	
+0x22	LD	R	B	imm8	-	2	load	
+0x23	LD	R	B	imm8	-	2	load	
+0x24	LD	R	B	imm8	-	2	load	
+0x25	LD	R	B	imm8	-	2	load	
+0x26	LD	R	B	imm8	-	2	load	
+0x27	LD	R	B	imm8	-	2	load	
+0x28	PUSH	R	W	-	-	3	load	
+0x29	PUSH	R	W	-	-	3	load	
+0x2A	PUSH	R	W	-	-	3	load	
+0x2B	PUSH	R	W	-	-	3	load	
+0x2C	PUSH	R	W	-	-	3	load	
+0x2D	PUSH	R	W	-	-	3	load	
+0x2E	PUSH	R	W	-	-	3	load	
+0x2F	PUSH	R	W	-	-	3	load	
+0x30	LD	R	W	imm16	-	3	load	
+0x31	LD	R	W	imm16	-	3	load	
+0x32	LD	R	W	imm16	-	3	load	
+0x33	LD	R	W	imm16	-	3	load	
+0x34	LD	R	W	imm16	-	3	load	
+0x35	LD	R	W	imm16	-	3	load	
+0x36	LD	R	W	imm16	-	3	load	
+0x37	LD	R	W	imm16	-	3	load	
+0x38	PUSH	R	L	-	-	5	load	
+0x39	PUSH	R	L	-	-	5	load	
+0x3A	PUSH	R	L	-	-	5	load	
+0x3B	PUSH	R	L	-	-	5	load	
+0x3C	PUSH	R	L	-	-	5	load	
+0x3D	PUSH	R	L	-	-	5	load	
+0x3E	PUSH	R	L	-	-	5	load	
+0x3F	PUSH	R	L	-	-	5	load	
+0x40	LD	R	L	imm32	-	5	load	
+0x41	LD	R	L	imm32	-	5	load	
+0x42	LD	R	L	imm32	-	5	load	
+0x43	LD	R	L	imm32	-	5	load	
+0x44	LD	R	L	imm32	-	5	load	
+0x45	LD	R	L	imm32	-	5	load	
+0x46	LD	R	L	imm32	-	5	load	
+0x47	LD	R	L	imm32	-	5	load	
+0x48	POP	R	W	-	-	4	load	
+0x49	POP	R	W	-	-	4	load	
+0x4A	POP	R	W	-	-	4	load	
+0x4B	POP	R	W	-	-	4	load	
+0x4C	POP	R	W	-	-	4	load	
+0x4D	POP	R	W	-	-	4	load	
+0x4E	POP	R	W	-	-	4	load	
+0x4F	POP	R	W	-	-	4	load	
+0x50	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x51	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x52	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x53	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x54	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x55	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x56	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x57	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x58	POP	R	L	-	-	6	load	
+0x59	POP	R	L	-	-	6	load	
+0x5A	POP	R	L	-	-	6	load	
+0x5B	POP	R	L	-	-	6	load	
+0x5C	POP	R	L	-	-	6	load	
+0x5D	POP	R	L	-	-	6	load	
+0x5E	POP	R	L	-	-	6	load	
+0x5F	POP	R	L	-	-	6	load	
+0x60	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x61	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x62	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x63	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x64	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x65	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x66	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x67	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x68	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x69	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x6A	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x6B	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x6C	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x6D	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x6E	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x6F	JR	cc	-	d8	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x70	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x71	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x72	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x73	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x74	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x75	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x76	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x77	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x78	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x79	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x7A	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x7B	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x7C	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x7D	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x7E	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x7F	JRL	cc	-	d16	-	2	control-transfer	+3 states if taken (/H jp_true)
+0x80	PFX_SRC	xrr	B	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x81	PFX_SRC	xrr	B	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x82	PFX_SRC	xrr	B	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x83	PFX_SRC	xrr	B	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x84	PFX_SRC	xrr	B	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x85	PFX_SRC	xrr	B	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x86	PFX_SRC	xrr	B	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x87	PFX_SRC	xrr	B	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x88	PFX_SRC	xrr+d8	B	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x89	PFX_SRC	xrr+d8	B	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x8A	PFX_SRC	xrr+d8	B	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x8B	PFX_SRC	xrr+d8	B	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x8C	PFX_SRC	xrr+d8	B	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x8D	PFX_SRC	xrr+d8	B	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x8E	PFX_SRC	xrr+d8	B	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x8F	PFX_SRC	xrr+d8	B	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x90	PFX_SRC	xrr	W	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x91	PFX_SRC	xrr	W	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x92	PFX_SRC	xrr	W	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x93	PFX_SRC	xrr	W	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x94	PFX_SRC	xrr	W	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x95	PFX_SRC	xrr	W	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x96	PFX_SRC	xrr	W	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x97	PFX_SRC	xrr	W	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0x98	PFX_SRC	xrr+d8	W	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x99	PFX_SRC	xrr+d8	W	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x9A	PFX_SRC	xrr+d8	W	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x9B	PFX_SRC	xrr+d8	W	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x9C	PFX_SRC	xrr+d8	W	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x9D	PFX_SRC	xrr+d8	W	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x9E	PFX_SRC	xrr+d8	W	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0x9F	PFX_SRC	xrr+d8	W	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0xA0	PFX_SRC	xrr	L	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0xA1	PFX_SRC	xrr	L	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0xA2	PFX_SRC	xrr	L	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0xA3	PFX_SRC	xrr	L	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0xA4	PFX_SRC	xrr	L	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0xA5	PFX_SRC	xrr	L	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0xA6	PFX_SRC	xrr	L	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0xA7	PFX_SRC	xrr	L	-	-	+0	prefix	XRR from low 3 bits; second byte = src map
+0xA8	PFX_SRC	xrr+d8	L	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0xA9	PFX_SRC	xrr+d8	L	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0xAA	PFX_SRC	xrr+d8	L	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0xAB	PFX_SRC	xrr+d8	L	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0xAC	PFX_SRC	xrr+d8	L	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0xAD	PFX_SRC	xrr+d8	L	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0xAE	PFX_SRC	xrr+d8	L	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0xAF	PFX_SRC	xrr+d8	L	-	-	+1	prefix	XRR from low 3 bits; second byte = src map
+0xB0	PFX_DST	xrr	-	-	-	+0	prefix	XRR from low 3 bits; second byte = dst map
+0xB1	PFX_DST	xrr	-	-	-	+0	prefix	XRR from low 3 bits; second byte = dst map
+0xB2	PFX_DST	xrr	-	-	-	+0	prefix	XRR from low 3 bits; second byte = dst map
+0xB3	PFX_DST	xrr	-	-	-	+0	prefix	XRR from low 3 bits; second byte = dst map
+0xB4	PFX_DST	xrr	-	-	-	+0	prefix	XRR from low 3 bits; second byte = dst map
+0xB5	PFX_DST	xrr	-	-	-	+0	prefix	XRR from low 3 bits; second byte = dst map
+0xB6	PFX_DST	xrr	-	-	-	+0	prefix	XRR from low 3 bits; second byte = dst map
+0xB7	PFX_DST	xrr	-	-	-	+0	prefix	XRR from low 3 bits; second byte = dst map
+0xB8	PFX_DST	xrr+d8	-	-	-	+1	prefix	XRR from low 3 bits; second byte = dst map
+0xB9	PFX_DST	xrr+d8	-	-	-	+1	prefix	XRR from low 3 bits; second byte = dst map
+0xBA	PFX_DST	xrr+d8	-	-	-	+1	prefix	XRR from low 3 bits; second byte = dst map
+0xBB	PFX_DST	xrr+d8	-	-	-	+1	prefix	XRR from low 3 bits; second byte = dst map
+0xBC	PFX_DST	xrr+d8	-	-	-	+1	prefix	XRR from low 3 bits; second byte = dst map
+0xBD	PFX_DST	xrr+d8	-	-	-	+1	prefix	XRR from low 3 bits; second byte = dst map
+0xBE	PFX_DST	xrr+d8	-	-	-	+1	prefix	XRR from low 3 bits; second byte = dst map
+0xBF	PFX_DST	xrr+d8	-	-	-	+1	prefix	XRR from low 3 bits; second byte = dst map
+0xC0	PFX_SRC	n8	B	-	-	+1	prefix	second byte = src map
+0xC1	PFX_SRC	n16	B	-	-	+2	prefix	second byte = src map
+0xC2	PFX_SRC	n24	B	-	-	+3	prefix	second byte = src map
+0xC3	PFX_SRC	ext	B	-	-	+1..3	prefix	sub-modes: (r32)+1, (r32+d16)+3, (r32+r8)+3, (r32+r16)+3, (PC+d16)+3 states; PC+d16 = undocumented ext code 13h; second byte = src map
+0xC4	PFX_SRC	-xrr	B	-	-	+1	prefix	step 1/2/4 from low 2 bits of reg-code byte; code 3 undefined; second byte = src map
+0xC5	PFX_SRC	xrr+	B	-	-	+1	prefix	step 1/2/4 from low 2 bits of reg-code byte; code 3 undefined; second byte = src map
+0xC6	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0xC7	PFX_REG	rcode	B	-	-	+0	prefix	full register-code byte follows; Toshiba mode adder +1 state, MAME /H charges +0 (divergence); second byte = reg map
+0xC8	PFX_REG	R	B	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xC9	PFX_REG	R	B	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xCA	PFX_REG	R	B	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xCB	PFX_REG	R	B	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xCC	PFX_REG	R	B	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xCD	PFX_REG	R	B	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xCE	PFX_REG	R	B	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xCF	PFX_REG	R	B	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xD0	PFX_SRC	n8	W	-	-	+1	prefix	second byte = src map
+0xD1	PFX_SRC	n16	W	-	-	+2	prefix	second byte = src map
+0xD2	PFX_SRC	n24	W	-	-	+3	prefix	second byte = src map
+0xD3	PFX_SRC	ext	W	-	-	+1..3	prefix	sub-modes: (r32)+1, (r32+d16)+3, (r32+r8)+3, (r32+r16)+3, (PC+d16)+3 states; PC+d16 = undocumented ext code 13h; second byte = src map
+0xD4	PFX_SRC	-xrr	W	-	-	+1	prefix	step 1/2/4 from low 2 bits of reg-code byte; code 3 undefined; second byte = src map
+0xD5	PFX_SRC	xrr+	W	-	-	+1	prefix	step 1/2/4 from low 2 bits of reg-code byte; code 3 undefined; second byte = src map
+0xD6	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0xD7	PFX_REG	rcode	W	-	-	+0	prefix	full register-code byte follows; Toshiba mode adder +1 state, MAME /H charges +0 (divergence); second byte = reg map
+0xD8	PFX_REG	R	W	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xD9	PFX_REG	R	W	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xDA	PFX_REG	R	W	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xDB	PFX_REG	R	W	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xDC	PFX_REG	R	W	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xDD	PFX_REG	R	W	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xDE	PFX_REG	R	W	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xDF	PFX_REG	R	W	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xE0	PFX_SRC	n8	L	-	-	+1	prefix	second byte = src map
+0xE1	PFX_SRC	n16	L	-	-	+2	prefix	second byte = src map
+0xE2	PFX_SRC	n24	L	-	-	+3	prefix	second byte = src map
+0xE3	PFX_SRC	ext	L	-	-	+1..3	prefix	sub-modes: (r32)+1, (r32+d16)+3, (r32+r8)+3, (r32+r16)+3, (PC+d16)+3 states; PC+d16 = undocumented ext code 13h; second byte = src map
+0xE4	PFX_SRC	-xrr	L	-	-	+1	prefix	step 1/2/4 from low 2 bits of reg-code byte; code 3 undefined; second byte = src map
+0xE5	PFX_SRC	xrr+	L	-	-	+1	prefix	step 1/2/4 from low 2 bits of reg-code byte; code 3 undefined; second byte = src map
+0xE6	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0xE7	PFX_REG	rcode	L	-	-	+0	prefix	full register-code byte follows; Toshiba mode adder +1 state, MAME /H charges +0 (divergence); second byte = reg map
+0xE8	PFX_REG	R	L	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xE9	PFX_REG	R	L	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xEA	PFX_REG	R	L	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xEB	PFX_REG	R	L	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xEC	PFX_REG	R	L	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xED	PFX_REG	R	L	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xEE	PFX_REG	R	L	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xEF	PFX_REG	R	L	-	-	+0	prefix	R from low 3 bits; second byte = reg map
+0xF0	PFX_DST	n8	-	-	-	+1	prefix	second byte = dst map
+0xF1	PFX_DST	n16	-	-	-	+2	prefix	second byte = dst map
+0xF2	PFX_DST	n24	-	-	-	+3	prefix	second byte = dst map
+0xF3	PFX_DST	ext	-	-	-	+1..3	prefix	sub-modes: (r32)+1, (r32+d16)+3, (r32+r8)+3, (r32+r16)+3, (PC+d16)+3 states; PC+d16 = undocumented ext code 13h; second byte = dst map
+0xF4	PFX_DST	-xrr	-	-	-	+1	prefix	step 1/2/4 from low 2 bits of reg-code byte; code 3 undefined; second byte = dst map
+0xF5	PFX_DST	xrr+	-	-	-	+1	prefix	step 1/2/4 from low 2 bits of reg-code byte; code 3 undefined; second byte = dst map
+0xF6	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0xF7	LDX	mem8	B	imm8	-	8	load	6-byte format F7 00 n8 00 imm8 00; non-zero padding behavior unknown
+0xF8	SWI	imm3	-	-	-	19	system	vector read mem32[FFFF00h+4*n]; pushes PC then SR
+0xF9	SWI	imm3	-	-	-	19	system	vector read mem32[FFFF00h+4*n]; pushes PC then SR
+0xFA	SWI	imm3	-	-	-	19	system	vector read mem32[FFFF00h+4*n]; pushes PC then SR
+0xFB	SWI	imm3	-	-	-	19	system	vector read mem32[FFFF00h+4*n]; pushes PC then SR
+0xFC	SWI	imm3	-	-	-	19	system	vector read mem32[FFFF00h+4*n]; pushes PC then SR
+0xFD	SWI	imm3	-	-	-	19	system	vector read mem32[FFFF00h+4*n]; pushes PC then SR
+0xFE	SWI	imm3	-	-	-	19	system	vector read mem32[FFFF00h+4*n]; pushes PC then SR
+0xFF	SWI	imm3	-	-	-	19	system	vector read mem32[FFFF00h+4*n]; pushes PC then SR

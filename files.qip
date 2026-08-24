@@ -1,0 +1,108 @@
+# Core PLL: 49.152 MHz c0 and 98.304 MHz c1 from the 50 MHz reference.
+set_global_assignment -name QIP_FILE rtl/pll.qip
+
+set_global_assignment -name VERILOG_FILE rtl/mem/cache_ram.v
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/mem/cache_ram_be.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cheats/ngp_cheat_loader.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cheats/ngp_cheat_engine.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/mem/sdram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_clocks.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/t900/t900_regfile.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/t900/t900_biu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/t900/t900_decode.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/t900/t900_alu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/t900/t900_shifter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/t900/t900_muldiv.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/t900/t900_seq.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/t900/t900_cpu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_intc.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_t8.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_t16.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_csc.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_ports.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_sio.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_adc.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_wdt.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/t900_mcu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_sysreg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_rtc.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_power.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_wram_clear.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_setup_seed.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_bios_anim_patch.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_host_clock.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/k2_soc_fabric.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/k2_soc.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/soc/ngp_mainboard.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/k2ge.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/k2ge_vtimer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/k2ge_vram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/k2ge_scroll.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/k2ge_obj.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/k2ge_linebuf.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/k2ge_palette.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/k2ge_scanout.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/ngpc_crt_framebuffer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/ngpc_color_profile.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/video/k2ge_mmr.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/flash_die.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_shadow_loader.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_persistence_admission.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_overlay_ledger.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_overlay_geometry.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_overlay_directory.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_overlay_sector_bridge.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_ddr_ch2_arbiter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_overlay_mover.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_overlay_apply.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_overlay_s0_load.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_overlay_s0_save.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_overlay.sv
+
+# SYNTHESIS selects the altddio_out/altddio_in I/O-cell capture path in
+# rtl/mem/sdram.sv. Quartus does not define it on its own; without it the
+# `ifdef's fabric-clock simulation model is synthesized instead, and
+# CAS_READ_CYCLES in sdram.sv is tuned against the I/O-cell path.
+set_global_assignment -name VERILOG_MACRO "SYNTHESIS=1"
+
+# TV80_REFRESH is required: without it tv80 has no R register and emits no
+# refresh cycle, a silent accuracy loss rather than a build error.
+set_global_assignment -name VERILOG_MACRO "TV80_REFRESH=1"
+
+# EXPERIMENT, 2026-08-24 -- the K2GE dot-resolve burst (agents/CHANGES.md of
+# that date).  k2ge_scanout resolves the 160 visible pixels one per dot across
+# hdot 60..219 instead of every third dot across 0..477, so a mid-line palette
+# write lands where hardware puts it.  These two lines are the ONLY way the
+# parameter reaches Quartus -- it is `ifdef-gated so that a build cannot pick it
+# up by accident, which also means a build cannot pick it up on purpose without
+# them.  Remove both to build the shipped scanout timing.
+# Requires P_BG_LINE_LATCH = 0 in rtl/video/k2ge_palette.sv, which is the
+# current default.  VERIFY after any build: NGPC.map.rpt must show
+# P_DOT_BURST ; 1 for k2ge_scanout:u_scanout.
+set_global_assignment -name VERILOG_MACRO "NGPC_DOT_BURST=1"
+set_global_assignment -name VERILOG_MACRO "NGPC_BURST_START=60"
+set_global_assignment -name VERILOG_FILE rtl/snd/z80/tv80/tv80_core.v
+set_global_assignment -name VERILOG_FILE rtl/snd/z80/tv80/tv80_alu.v
+set_global_assignment -name VERILOG_FILE rtl/snd/z80/tv80/tv80_mcode.v
+set_global_assignment -name VERILOG_FILE rtl/snd/z80/tv80/tv80_reg.v
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/snd/z80/ngp_z80.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/snd/ngp_snd.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/snd/t6w28.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/snd/ngp_mixer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/mem/cart_sdram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_sdram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/cart/ngp_cart_rom.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/Savestates/savestates.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/Savestates/statemanager.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/Savestates/savestate_ui.sv
+set_global_assignment -name VERILOG_FILE rtl/mem/ddram.v
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/Savestates/ngp_ss_glue.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/Savestates/ngp_sparse_state_manifest.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/Savestates/ngp_sparse_state_store.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/Savestates/ngp_savestate.sv
+
+set_global_assignment -name SDC_FILE NGPC.sdc
+set_global_assignment -name SDC_FILE rtl/mem/sdram.sdc
+set_global_assignment -name SYSTEMVERILOG_FILE NGPC.sv

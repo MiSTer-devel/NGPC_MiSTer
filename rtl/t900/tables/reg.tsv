@@ -1,0 +1,257 @@
+opcode	mnemonic	op1_kind	op1_size	op2_kind	op2_size	states_900h	group	notes
+0x00	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x01	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x02	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x03	LD	r	z	imm	z	3/4/6	load	
+0x04	PUSH	r	z	-	-	4/4/6	load	
+0x05	POP	r	z	-	-	5/5/6	load	MAME long form = 6 states; Toshiba Appendix B lists POP r 5/5/7 (research 01 s9.2) -- cycle-oracle delta for Phase 1
+0x06	CPL	r	z	-	-	2/2/-	alu	
+0x07	NEG	r	z	-	-	2/2/-	alu	
+0x08	MUL	r	z	imm	z	12/15/-	alu	
+0x09	MULS	r	z	imm	z	10/13/-	alu	
+0x0A	DIV	r	z	imm	z	15/23/-	alu	
+0x0B	DIVS	r	z	imm	z	18/26/-	alu	
+0x0C	LINK	r	L	imm16	-	-/-/8	load	SILICON (quirks_db cpu.link_xiy_large_frame, grade B): LINK XIY,N with N>=5 broken on NGPC; replicate, do not fix
+0x0D	UNLK	r	L	-	-	-/-/7	load	
+0x0E	BS1F	A	B	r	W	-/3/-	alu	
+0x0F	BS1B	A	B	r	W	-/3/-	alu	
+0x10	DAA	r	B	-	-	4/-/-	alu	
+0x11	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x12	EXTZ	r	z	-	-	-/3/3	alu	
+0x13	EXTS	r	z	-	-	-/3/3	alu	
+0x14	PAA	r	z	-	-	-/4/4	alu	
+0x15	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x16	MIRR	r	W	-	-	-/3/-	alu	
+0x17	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x18	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x19	MULA	r	W	-	-	-/19/-	alu	
+0x1A	UNDEF	-	-	-	-	-	undefined	Toshiba code map: dummy 'do not use' (reg-map); silicon behavior unverified (likely INTUNDEF)
+0x1B	UNDEF	-	-	-	-	-	undefined	Toshiba code map: dummy 'do not use' (reg-map); silicon behavior unverified (likely INTUNDEF)
+0x1C	DJNZ	r	z	d8	-	4/4/-	control-transfer	+2 states if loop taken (/H djnz_true); HW: D9 1C = djnz BC 16-bit confirmed (quirks_db hw_test_off 2026-07-03)
+0x1D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1E	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x1F	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x20	ANDCF	imm8	-	r	z	3/3/-	bit	
+0x21	ORCF	imm8	-	r	z	3/3/-	bit	
+0x22	XORCF	imm8	-	r	z	3/3/-	bit	
+0x23	LDCF	imm8	-	r	z	3/3/-	bit	
+0x24	STCF	imm8	-	r	z	3/3/-	bit	
+0x25	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x26	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x27	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x28	ANDCF	A	B	r	z	3/3/-	bit	
+0x29	ORCF	A	B	r	z	3/3/-	bit	
+0x2A	XORCF	A	B	r	z	3/3/-	bit	
+0x2B	LDCF	A	B	r	z	3/3/-	bit	
+0x2C	STCF	A	B	r	z	3/3/-	bit	
+0x2D	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x2E	LDC	cr	z	r	z	3/3/3	system	cr codes: DMAS/DMAD/DMAC/DMAM/INTNEST; MAME omits INTNEST (3Ch) -- grade-A flowchart requires it
+0x2F	LDC	r	z	cr	z	3/3/3	system	cr codes: DMAS/DMAD/DMAC/DMAM/INTNEST; MAME omits INTNEST (3Ch) -- grade-A flowchart requires it
+0x30	RES	imm8	-	r	z	3/3/-	bit	
+0x31	SET	imm8	-	r	z	3/3/-	bit	
+0x32	CHG	imm8	-	r	z	3/3/-	bit	
+0x33	BIT	imm8	-	r	z	3/3/-	bit	
+0x34	TSET	imm8	-	r	z	4/4/-	bit	
+0x35	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x36	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x37	UNDEF	-	-	-	-	-	undefined	undef; INTUNDEF trap expected (=SWI2, vector FFFF08h) per TMP95C061; MAME logs+skips
+0x38	MINC1	imm16	-	r	W	-/5/-	alu	
+0x39	MINC2	imm16	-	r	W	-/5/-	alu	
+0x3A	MINC4	imm16	-	r	W	-/5/-	alu	
+0x3B	UNDEF	-	-	-	-	-	undefined	Toshiba code map: dummy 'do not use' (reg-map); silicon behavior unverified (likely INTUNDEF)
+0x3C	MDEC1	imm16	-	r	W	-/4/-	alu	
+0x3D	MDEC2	imm16	-	r	W	-/4/-	alu	
+0x3E	MDEC4	imm16	-	r	W	-/4/-	alu	
+0x3F	UNDEF	-	-	-	-	-	undefined	Toshiba code map: dummy 'do not use' (reg-map); silicon behavior unverified (likely INTUNDEF)
+0x40	MUL	R	z2	r	z	11/14/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x41	MUL	R	z2	r	z	11/14/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x42	MUL	R	z2	r	z	11/14/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x43	MUL	R	z2	r	z	11/14/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x44	MUL	R	z2	r	z	11/14/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x45	MUL	R	z2	r	z	11/14/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x46	MUL	R	z2	r	z	11/14/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x47	MUL	R	z2	r	z	11/14/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x48	MULS	R	z2	r	z	9/12/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x49	MULS	R	z2	r	z	9/12/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x4A	MULS	R	z2	r	z	9/12/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x4B	MULS	R	z2	r	z	9/12/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x4C	MULS	R	z2	r	z	9/12/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x4D	MULS	R	z2	r	z	9/12/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x4E	MULS	R	z2	r	z	9/12/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x4F	MULS	R	z2	r	z	9/12/-	alu	dst is double-width register pair (RR); HW: mul/div r+r pocket cleared on silicon (quirks_db v11 word D9 50, v12 byte CB 51); mul inferred safe same pocket
+0x50	DIV	R	z2	r	z	15/23/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x51	DIV	R	z2	r	z	15/23/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x52	DIV	R	z2	r	z	15/23/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x53	DIV	R	z2	r	z	15/23/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x54	DIV	R	z2	r	z	15/23/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x55	DIV	R	z2	r	z	15/23/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x56	DIV	R	z2	r	z	15/23/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x57	DIV	R	z2	r	z	15/23/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x58	DIVS	R	z2	r	z	18/26/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x59	DIVS	R	z2	r	z	18/26/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x5A	DIVS	R	z2	r	z	18/26/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x5B	DIVS	R	z2	r	z	24/26/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x5C	DIVS	R	z2	r	z	18/26/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x5D	DIVS	R	z2	r	z	18/26/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x5E	DIVS	R	z2	r	z	18/26/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x5F	DIVS	R	z2	r	z	24/26/-	alu	dst is double-width register pair (RR); HW-verified on NGPC silicon: word div D9 50 (2026-07-06), byte div CB 51 (2026-07-08) per quirks_db
+0x60	INC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x61	INC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x62	INC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x63	INC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x64	INC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x65	INC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x66	INC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x67	INC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x68	DEC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x69	DEC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x6A	DEC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x6B	DEC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x6C	DEC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x6D	DEC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x6E	DEC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x6F	DEC	imm3	-	r	z	2/2/2	alu	imm3 0 means 8; byte form sets flags except C, word/long register forms set no flags
+0x70	SCC	cc	-	r	z	2/2/-	alu	
+0x71	SCC	cc	-	r	z	2/2/-	alu	
+0x72	SCC	cc	-	r	z	2/2/-	alu	
+0x73	SCC	cc	-	r	z	2/2/-	alu	
+0x74	SCC	cc	-	r	z	2/2/-	alu	
+0x75	SCC	cc	-	r	z	2/2/-	alu	
+0x76	SCC	cc	-	r	z	2/2/-	alu	
+0x77	SCC	cc	-	r	z	2/2/-	alu	
+0x78	SCC	cc	-	r	z	2/2/-	alu	
+0x79	SCC	cc	-	r	z	2/2/-	alu	
+0x7A	SCC	cc	-	r	z	2/2/-	alu	
+0x7B	SCC	cc	-	r	z	2/2/-	alu	
+0x7C	SCC	cc	-	r	z	2/2/-	alu	
+0x7D	SCC	cc	-	r	z	2/2/-	alu	
+0x7E	SCC	cc	-	r	z	2/2/-	alu	
+0x7F	SCC	cc	-	r	z	2/2/-	alu	
+0x80	ADD	R	z	r	z	2/2/2	alu	HW-verified word r+r on silicon (quirks_db v10 hw_test_addrr D8 80/D8 82); USER_MANUAL 12.1 blanket-broken claim disproven
+0x81	ADD	R	z	r	z	2/2/2	alu	HW-verified word r+r on silicon (quirks_db v10 hw_test_addrr D8 80/D8 82); USER_MANUAL 12.1 blanket-broken claim disproven
+0x82	ADD	R	z	r	z	2/2/2	alu	HW-verified word r+r on silicon (quirks_db v10 hw_test_addrr D8 80/D8 82); USER_MANUAL 12.1 blanket-broken claim disproven
+0x83	ADD	R	z	r	z	2/2/2	alu	HW-verified word r+r on silicon (quirks_db v10 hw_test_addrr D8 80/D8 82); USER_MANUAL 12.1 blanket-broken claim disproven
+0x84	ADD	R	z	r	z	2/2/2	alu	HW-verified word r+r on silicon (quirks_db v10 hw_test_addrr D8 80/D8 82); USER_MANUAL 12.1 blanket-broken claim disproven
+0x85	ADD	R	z	r	z	2/2/2	alu	HW-verified word r+r on silicon (quirks_db v10 hw_test_addrr D8 80/D8 82); USER_MANUAL 12.1 blanket-broken claim disproven
+0x86	ADD	R	z	r	z	2/2/2	alu	HW-verified word r+r on silicon (quirks_db v10 hw_test_addrr D8 80/D8 82); USER_MANUAL 12.1 blanket-broken claim disproven
+0x87	ADD	R	z	r	z	2/2/2	alu	HW-verified word r+r on silicon (quirks_db v10 hw_test_addrr D8 80/D8 82); USER_MANUAL 12.1 blanket-broken claim disproven
+0x88	LD	R	z	r	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x89	LD	R	z	r	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x8A	LD	R	z	r	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x8B	LD	R	z	r	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x8C	LD	R	z	r	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x8D	LD	R	z	r	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x8E	LD	R	z	r	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x8F	LD	R	z	r	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x90	ADC	R	z	r	z	2/2/2	alu	
+0x91	ADC	R	z	r	z	2/2/2	alu	
+0x92	ADC	R	z	r	z	2/2/2	alu	
+0x93	ADC	R	z	r	z	2/2/2	alu	
+0x94	ADC	R	z	r	z	2/2/2	alu	
+0x95	ADC	R	z	r	z	2/2/2	alu	
+0x96	ADC	R	z	r	z	2/2/2	alu	
+0x97	ADC	R	z	r	z	2/2/2	alu	
+0x98	LD	r	z	R	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x99	LD	r	z	R	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x9A	LD	r	z	R	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x9B	LD	r	z	R	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x9C	LD	r	z	R	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x9D	LD	r	z	R	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x9E	LD	r	z	R	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0x9F	LD	r	z	R	z	2/2/2	load	HW: ld r+r copies verified word-width (quirks_db v7/v8, mr_robot retail + hw_test_off D8 89 -> ld BC,WA)
+0xA0	SUB	R	z	r	z	2/2/7	alu	
+0xA1	SUB	R	z	r	z	2/2/7	alu	
+0xA2	SUB	R	z	r	z	2/2/7	alu	
+0xA3	SUB	R	z	r	z	2/2/7	alu	
+0xA4	SUB	R	z	r	z	2/2/7	alu	
+0xA5	SUB	R	z	r	z	2/2/7	alu	
+0xA6	SUB	R	z	r	z	2/2/7	alu	
+0xA7	SUB	R	z	r	z	2/2/7	alu	
+0xA8	LD	r	z	imm3	-	2/2/4	load	
+0xA9	LD	r	z	imm3	-	2/2/4	load	
+0xAA	LD	r	z	imm3	-	2/2/4	load	
+0xAB	LD	r	z	imm3	-	2/2/4	load	
+0xAC	LD	r	z	imm3	-	2/2/4	load	
+0xAD	LD	r	z	imm3	-	2/2/4	load	
+0xAE	LD	r	z	imm3	-	2/2/4	load	
+0xAF	LD	r	z	imm3	-	2/2/4	load	
+0xB0	SBC	R	z	r	z	2/2/7	alu	
+0xB1	SBC	R	z	r	z	2/2/7	alu	
+0xB2	SBC	R	z	r	z	2/2/7	alu	
+0xB3	SBC	R	z	r	z	2/2/7	alu	
+0xB4	SBC	R	z	r	z	2/2/7	alu	
+0xB5	SBC	R	z	r	z	2/2/7	alu	
+0xB6	SBC	R	z	r	z	2/2/7	alu	
+0xB7	SBC	R	z	r	z	2/2/7	alu	
+0xB8	EX	R	z	r	z	3/3/-	load	quirks_db d8_df matcher does NOT safe-list this sub-op for the D8-DF word prefix (no HW test; Ngpcraft honest-stops)
+0xB9	EX	R	z	r	z	3/3/-	load	quirks_db d8_df matcher does NOT safe-list this sub-op for the D8-DF word prefix (no HW test; Ngpcraft honest-stops)
+0xBA	EX	R	z	r	z	3/3/-	load	quirks_db d8_df matcher does NOT safe-list this sub-op for the D8-DF word prefix (no HW test; Ngpcraft honest-stops)
+0xBB	EX	R	z	r	z	3/3/-	load	quirks_db d8_df matcher does NOT safe-list this sub-op for the D8-DF word prefix (no HW test; Ngpcraft honest-stops)
+0xBC	EX	R	z	r	z	3/3/-	load	quirks_db d8_df matcher does NOT safe-list this sub-op for the D8-DF word prefix (no HW test; Ngpcraft honest-stops)
+0xBD	EX	R	z	r	z	3/3/-	load	quirks_db d8_df matcher does NOT safe-list this sub-op for the D8-DF word prefix (no HW test; Ngpcraft honest-stops)
+0xBE	EX	R	z	r	z	3/3/-	load	quirks_db d8_df matcher does NOT safe-list this sub-op for the D8-DF word prefix (no HW test; Ngpcraft honest-stops)
+0xBF	EX	R	z	r	z	3/3/-	load	quirks_db d8_df matcher does NOT safe-list this sub-op for the D8-DF word prefix (no HW test; Ngpcraft honest-stops)
+0xC0	AND	R	z	r	z	2/2/2	alu	
+0xC1	AND	R	z	r	z	2/2/2	alu	
+0xC2	AND	R	z	r	z	2/2/2	alu	
+0xC3	AND	R	z	r	z	2/2/2	alu	
+0xC4	AND	R	z	r	z	2/2/2	alu	
+0xC5	AND	R	z	r	z	2/2/2	alu	
+0xC6	AND	R	z	r	z	2/2/2	alu	
+0xC7	AND	R	z	r	z	2/2/2	alu	
+0xC8	ADD	r	z	imm	z	3/4/6	alu	
+0xC9	ADC	r	z	imm	z	3/4/6	alu	
+0xCA	SUB	r	z	imm	z	3/4/6	alu	
+0xCB	SBC	r	z	imm	z	3/4/6	alu	
+0xCC	AND	r	z	imm	z	3/4/6	alu	
+0xCD	XOR	r	z	imm	z	3/4/6	alu	
+0xCE	OR	r	z	imm	z	3/4/6	alu	
+0xCF	CP	r	z	imm	z	3/4/6	alu	
+0xD0	XOR	R	z	r	z	2/2/2	alu	
+0xD1	XOR	R	z	r	z	2/2/2	alu	
+0xD2	XOR	R	z	r	z	2/2/2	alu	
+0xD3	XOR	R	z	r	z	2/2/2	alu	
+0xD4	XOR	R	z	r	z	2/2/2	alu	
+0xD5	XOR	R	z	r	z	2/2/2	alu	
+0xD6	XOR	R	z	r	z	2/2/2	alu	
+0xD7	XOR	R	z	r	z	2/2/2	alu	
+0xD8	CP	r	z	imm3	-	2/2/2	alu	
+0xD9	CP	r	z	imm3	-	2/2/2	alu	
+0xDA	CP	r	z	imm3	-	2/2/2	alu	
+0xDB	CP	r	z	imm3	-	2/2/2	alu	
+0xDC	CP	r	z	imm3	-	2/2/2	alu	
+0xDD	CP	r	z	imm3	-	2/2/2	alu	
+0xDE	CP	r	z	imm3	-	2/2/2	alu	
+0xDF	CP	r	z	imm3	-	2/2/2	alu	
+0xE0	OR	R	z	r	z	2/2/2	alu	
+0xE1	OR	R	z	r	z	2/2/2	alu	
+0xE2	OR	R	z	r	z	2/2/2	alu	
+0xE3	OR	R	z	r	z	2/2/2	alu	
+0xE4	OR	R	z	r	z	2/2/2	alu	
+0xE5	OR	R	z	r	z	2/2/2	alu	
+0xE6	OR	R	z	r	z	2/2/2	alu	
+0xE7	OR	R	z	r	z	2/2/2	alu	
+0xE8	RLC	imm8	-	r	z	3/3/3	shift	count byte follows (0 => 16); +n/4 states (/H shift adder)
+0xE9	RRC	imm8	-	r	z	3/3/3	shift	count byte follows (0 => 16); +n/4 states (/H shift adder)
+0xEA	RL	imm8	-	r	z	3/3/3	shift	count byte follows (0 => 16); +n/4 states (/H shift adder)
+0xEB	RR	imm8	-	r	z	3/3/3	shift	count byte follows (0 => 16); +n/4 states (/H shift adder)
+0xEC	SLA	imm8	-	r	z	3/3/3	shift	count byte follows (0 => 16); +n/4 states (/H shift adder)
+0xED	SRA	imm8	-	r	z	3/3/3	shift	count byte follows (0 => 16); +n/4 states (/H shift adder)
+0xEE	SLL	imm8	-	r	z	3/3/3	shift	count byte follows (0 => 16); +n/4 states (/H shift adder)
+0xEF	SRL	imm8	-	r	z	3/3/3	shift	count byte follows (0 => 16); +n/4 states (/H shift adder)
+0xF0	CP	R	z	r	z	2/2/2	alu	
+0xF1	CP	R	z	r	z	2/2/2	alu	
+0xF2	CP	R	z	r	z	2/2/2	alu	
+0xF3	CP	R	z	r	z	2/2/2	alu	
+0xF4	CP	R	z	r	z	2/2/2	alu	
+0xF5	CP	R	z	r	z	2/2/2	alu	
+0xF6	CP	R	z	r	z	2/2/2	alu	
+0xF7	CP	R	z	r	z	2/2/2	alu	
+0xF8	RLC	A	B	r	z	3/3/3	shift	count in A; +n/4 states; count=0 edge case unverified; quirks_db note keeps shift-by-A via D8-DF prefix silicon-suspect (separate quirk, unresolved)
+0xF9	RRC	A	B	r	z	3/3/3	shift	count in A; +n/4 states; count=0 edge case unverified; quirks_db note keeps shift-by-A via D8-DF prefix silicon-suspect (separate quirk, unresolved)
+0xFA	RL	A	B	r	z	3/3/3	shift	count in A; +n/4 states; count=0 edge case unverified; quirks_db note keeps shift-by-A via D8-DF prefix silicon-suspect (separate quirk, unresolved)
+0xFB	RR	A	B	r	z	3/3/3	shift	count in A; +n/4 states; count=0 edge case unverified; quirks_db note keeps shift-by-A via D8-DF prefix silicon-suspect (separate quirk, unresolved)
+0xFC	SLA	A	B	r	z	3/3/3	shift	count in A; +n/4 states; count=0 edge case unverified; quirks_db note keeps shift-by-A via D8-DF prefix silicon-suspect (separate quirk, unresolved)
+0xFD	SRA	A	B	r	z	3/3/3	shift	count in A; +n/4 states; count=0 edge case unverified; quirks_db note keeps shift-by-A via D8-DF prefix silicon-suspect (separate quirk, unresolved)
+0xFE	SLL	A	B	r	z	3/3/3	shift	count in A; +n/4 states; count=0 edge case unverified; quirks_db note keeps shift-by-A via D8-DF prefix silicon-suspect (separate quirk, unresolved)
+0xFF	SRL	A	B	r	z	3/3/3	shift	count in A; +n/4 states; count=0 edge case unverified; quirks_db note keeps shift-by-A via D8-DF prefix silicon-suspect (separate quirk, unresolved)
