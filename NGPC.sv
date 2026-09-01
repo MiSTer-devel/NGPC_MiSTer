@@ -31,6 +31,7 @@
 //   [20]       P1O[20]          LCD response Raw/Panel
 //   [22:21]    H0P1O[22:21]     Saturation 75%/50%/25%/100%
 //   [23]       H0P3O[23]        Palette updates Immediate/Frame
+//   [24]       O[24]            Serial route Internal/SNAC
 //   [42]       d7R[42]          Save state
 //   [43]       d7R[43]          Load state
 //   [44]       d7P3O[44]        Savestate disk-write off
@@ -50,7 +51,6 @@ module emu
 //////////////////////// Framework ports not used yet ////////////////////////
 
 assign ADC_BUS  = 'Z;
-assign USER_OUT = '1;
 assign UART_DTR = 1'b0;
 assign {SD_SCK, SD_MOSI, SD_CS} = 'Z;
 
@@ -109,6 +109,7 @@ localparam CONF_STR = {
 	"P3-;",
 	"P3O[17],RTC,MiSTer Time,BIOS Default;",
 	"P3O[18],Automatic Power,On,Off;",
+	"P3O[24],Serial Route,Internal,SNAC;",
 	//"H0P3O[23],Palette Updates,Immediate,Frame Boundary;",
 	"P3-;",
 	"P3O[10],Autosave,On,Off;",
@@ -726,44 +727,65 @@ wire        hsync, vsync, hblank, vblank;
 wire [15:0] audio_l, audio_r;
 wire        led_user;
 
-// The MiSTer HPS UART is the transport for CON2. Main enables the connection
-// and sets the HPS peripheral to the one link rate advertised in CONF_STR.
-// A disabled or mismatched host is electrically indistinguishable from no
-// cable: TMP95C061 Port 8 pulls P81/RXD0 and P82/CTS0 high (datasheet
-// pp.41-42), leaving RXD at mark/idle and active-low CTS deasserted.
+// CON2 can be routed either through the MiSTer HPS UART (Internal) or directly
+// through the USER port (SNAC). Main enables the HPS connection and sets its
+// peripheral to the one link rate advertised in CONF_STR. A disabled or
+// mismatched internal host is electrically indistinguishable from no cable:
+// TMP95C061 Port 8 pulls P81/RXD0 and P82/CTS0 high (datasheet pp.41-42),
+// leaving RXD at mark/idle and active-low CTS deasserted.
 localparam [0:0] LINK_RXD_UNPLUGGED   = 1'b1;
 localparam [0:0] LINK_CTS_N_UNPLUGGED = 1'b1;
 localparam [31:0] LINK_UART_BAUD       = 32'd19200;
 
 wire link_txd;
 wire link_rts_n;
-wire link_host_enable = (hps_uart_mode != 8'd0) &&
+wire serial_route_snac = status[24];
+wire link_host_enable = !serial_route_snac && (hps_uart_mode != 8'd0) &&
 	                    (hps_uart_speed == LINK_UART_BAUD);
 
-// UART_RXD and UART_CTS are produced in the HPS UART clock domain. The serial
-// receiver oversamples at 16x, so two clk_sys synchronizer stages add no
-// meaningful bit-time error and keep metastability out of the SC0 state.
+// The HPS and USER-port inputs are asynchronous to clk_sys. The serial receiver
+// oversamples at 16x, so two synchronizer stages add no meaningful bit-time
+// error and keep metastability out of the SC0 state.
 (* ASYNC_REG = "TRUE" *) reg [1:0] hps_link_rxd_sync;
 (* ASYNC_REG = "TRUE" *) reg [1:0] hps_link_cts_sync;
+(* ASYNC_REG = "TRUE" *) reg [1:0] snac_link_rxd_sync;
+(* ASYNC_REG = "TRUE" *) reg [1:0] snac_link_cts_sync;
 
 always @(posedge clk_sys) begin
 	if (hard_reset) begin
 		hps_link_rxd_sync <= 2'b11;
 		hps_link_cts_sync <= 2'b11;
+		snac_link_rxd_sync <= 2'b11;
+		snac_link_cts_sync <= 2'b11;
 	end else begin
 		hps_link_rxd_sync <= {hps_link_rxd_sync[0], UART_RXD};
 		hps_link_cts_sync <= {hps_link_cts_sync[0], UART_CTS};
+		snac_link_rxd_sync <= {snac_link_rxd_sync[0], USER_IN[1]};
+		snac_link_cts_sync <= {snac_link_cts_sync[0], USER_IN[4]};
 	end
 end
 
-wire link_rxd   = link_host_enable ? hps_link_rxd_sync[1] : LINK_RXD_UNPLUGGED;
-wire link_cts_n = link_host_enable ? hps_link_cts_sync[1] : LINK_CTS_N_UNPLUGGED;
+wire link_rxd = serial_route_snac ? snac_link_rxd_sync[1] :
+	                link_host_enable ? hps_link_rxd_sync[1] : LINK_RXD_UNPLUGGED;
+wire link_cts_n = serial_route_snac ? snac_link_cts_sync[1] :
+	                  link_host_enable ? hps_link_cts_sync[1] : LINK_CTS_N_UNPLUGGED;
+wire link_present = serial_route_snac || link_host_enable;
 
 // sys_top crosses the endpoint-oriented names: core UART_TXD feeds HPS RXD,
 // and core UART_RTS feeds HPS CTS. Both handshake signals use their native
 // active-low wire levels, so no polarity inversion belongs here.
 assign UART_TXD = link_host_enable ? link_txd   : 1'b1;
 assign UART_RTS = link_host_enable ? link_rts_n : 1'b1;
+
+// USER_IO[1] and [4] are inputs and therefore remain released. All unused pins
+// are released as well, including while the Internal route is selected.
+assign USER_OUT[0] = 1'b1;
+assign USER_OUT[1] = 1'b1;
+assign USER_OUT[2] = serial_route_snac ? link_txd   : 1'b1;
+assign USER_OUT[3] = 1'b1;
+assign USER_OUT[4] = 1'b1;
+assign USER_OUT[5] = 1'b1;
+assign USER_OUT[6] = serial_route_snac ? link_rts_n : 1'b1;
 
 wire [63:0] ss_bus_dout;
 wire  [7:0] ss_mem_rdata;
@@ -923,6 +945,7 @@ ngp_mainboard mainboard
 	.link_rxd             (link_rxd),
 	.link_rts_n           (link_rts_n),
 	.link_cts_n           (link_cts_n),
+	.link_present         (link_present),
 
 	.led_user             (led_user),
 	.bios_setup_ready     (bios_setup_ready),
@@ -1661,7 +1684,7 @@ wire unused_ok = &{1'b0,
 	wram_clear_done,
 	freeze_sync,
 	buttons[0], joystick_0[31:9], status[127:123],
-	status[120:47], status[41:24], status[9],
+	status[120:47], status[41:25], status[9],
 	img_mounted[1], sd_ack[1], ss_load_done,
 	overlay_pending, overlay_mounted_writable,
 	overlay_save_rejected, overlay_load_done,
@@ -1670,7 +1693,7 @@ wire unused_ok = &{1'b0,
 	overlay_file0, overlay_file1,
 	shadow_ddr_dout,
 	CLK_AUDIO, SD_MISO, SD_CD,
-	UART_DSR, USER_IN,
+	UART_DSR, USER_IN[6:5], USER_IN[3:2], USER_IN[0],
 	1'b0};
 
 endmodule

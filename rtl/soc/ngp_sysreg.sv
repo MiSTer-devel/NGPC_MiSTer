@@ -110,6 +110,7 @@ module ngp_sysreg
 	input  wire [6:0]  btn_n,          // active low: Up Down Left Right A B Option
 	input  wire        pwr_btn_n,      // active low
 	input  wire        subbatt_ok,     // board ties 1
+	input  wire        link_present,   // active high; inverted at 0xB1 bit 2
 	output wire        link_rts_n,
 
 	// chip-internal fan-out
@@ -193,11 +194,9 @@ module ngp_sysreg
 		case (a)
 			A_GEAR:  rdata_r = reg_gear;
 			A_BTN:   rdata_r = {1'b0, ~btn_n};
-			// Bit 2 is the active-low cable-detect input. There is no link
-			// transport at the emu boundary yet, so it must read 1 = unplugged.
-			// SNK Gals' Fighters reads exactly this bit at ROM 0x264350 and
-			// enters its LINK FAILURE path when it is left at 0.
-			A_PWR:   rdata_r = {5'd0, 1'b1, subbatt_ok, pwr_btn_n};
+			// Bit 2 is the active-low cable-detect input: 0 when the selected
+			// external transport presents a link cable, 1 when unplugged.
+			A_PWR:   rdata_r = {5'd0, ~link_present, subbatt_ok, pwr_btn_n};
 			A_COMM:  rdata_r = reg_b2;
 			A_NMIG:  rdata_r = reg_b3;
 			A_PWL0:  rdata_r = reg_b4;
