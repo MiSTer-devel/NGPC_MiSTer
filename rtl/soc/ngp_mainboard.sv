@@ -80,13 +80,13 @@ module ngp_mainboard
 	input  wire        power_btn,        // active HIGH, held >= 8 frames
 
 	// ---- CON2 link connector ----------------------------------------------
-	// The board carries all four SC0 signals without inventing a partner. The
-	// emu boundary supplies the unplugged RXD0/CTS0_n pull levels; keeping TXD0
-	// and RTS_n visible here makes a later cable transport a wiring change.
+	// The board carries all four SC0 signals plus the active-low cable-detect
+	// state exposed through system register 0xB1 bit 2.
 	output wire        link_txd,
 	input  wire        link_rxd,
 	output wire        link_rts_n,
 	input  wire        link_cts_n,
+	input  wire        link_present,
 
 	output wire        led_user,
 	output wire        bios_setup_ready,
@@ -353,6 +353,7 @@ module ngp_mainboard
 		.link_rxd      (link_rxd),
 		.link_rts_n    (link_rts_n),
 		.link_cts_n    (link_cts_n),
+		.link_present  (link_present),
 
 		.ss_bus_adr    (ss_bus_adr),
 		.ss_bus_din    (ss_bus_din),

@@ -224,6 +224,7 @@ module k2_soc
 	input  wire        link_rxd,
 	output wire        link_rts_n,   // SNK register 0xB2 bit 0
 	input  wire        link_cts_n,   // CTS0 pin
+	input  wire        link_present, // cable-detect input, active high internally
 
 	// ---- savestate internals slice + memory taps --------------------------
 	input  wire [9:0]  ss_bus_adr,
@@ -826,6 +827,7 @@ module k2_soc
 		.btn_n             (btn_n),
 		.pwr_btn_n         (pwr_btn_held_n),
 		.subbatt_ok        (1'b1),          // deviation 3
+		.link_present      (link_present),
 		.link_rts_n        (link_rts_n),
 
 		.gear              (gear),

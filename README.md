@@ -7,6 +7,13 @@ This core is pretty straightforward. It's a recreation of the NeoGeo Pocket Colo
 - boot0.rom should be the COLOR BIOS.
 - boot1.rom should be the MONO BIOS.
 
+## Link Cable
+The `Serial Route` menu option selects the link-cable transport:
+
+- `Internal` uses MiSTer's HPS UART at 19200 baud.
+- `SNAC` connects the native link signals directly to the USERIO vector pins:
+  `USER_IO[1]` RX, `USER_IO[2]` TX, `USER_IO[4]` CTS, and `USER_IO[6]` RTS..
+
 That's it! Have Fun!
 
 ## Development
